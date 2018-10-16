@@ -19,14 +19,14 @@ namespace Halite3
             // At this point "game" variable is populated with initial map data.
             // This is a good place to do computationally expensive start-up pre-processing.
             // As soon as you call "ready" function below, the 2 second per turn timer will start.
-            game.ready("PopAye");
+            game.Ready("PopAye");
 
             Log.logger().Info("Successfully created bot! My Player ID is " + game.MyId + ".");
 
             var allDirections = new List<Direction>{Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST};
 
             while(true) {
-                game.updateFrame();
+                game.UpdateFrame();
                 var me = game.Me;
                 GameMap gameMap = game.GameMap;
 
@@ -49,7 +49,7 @@ namespace Halite3
                     commandQueue.Add(me.Shipyard.spawn());
                 }
 
-                game.endTurn(commandQueue);
+                game.EndTurn(commandQueue);
             }
         }
     }

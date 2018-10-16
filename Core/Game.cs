@@ -25,16 +25,16 @@ namespace Halite3.Core
                 var player = Player._generate();
                 Players.Add(player.Id.Id, player);
             }
-            
+
             Me = Players[MyId.Id];
             GameMap = GameMap._generate();
         }
 
-        public void ready(string name) {
+        public void Ready(string name) {
             Console.WriteLine(name);
         }
 
-        public void updateFrame() {
+        public void UpdateFrame() {
             TurnNumber = Input.readInput().getInt();
             Log.logger().Info("=============== TURN " + TurnNumber + " ================");
 
@@ -64,7 +64,7 @@ namespace Halite3.Core
             }
         }
 
-        public void endTurn(List<Command> commands) {
+        public void EndTurn(List<Command> commands) {
             foreach (var command in commands) {
                 Console.WriteLine(command.CommandValue);
                 Console.WriteLine(' ');
