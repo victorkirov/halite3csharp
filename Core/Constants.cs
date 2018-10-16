@@ -4,7 +4,8 @@ using Newtonsoft.Json;
 
 namespace Halite3.Core
 {
-    public class Constants {
+    public class Constants
+    {
         /** The maximum amount of halite a ship can carry. */
         public static int MAX_HALITE { get; private set; }
         /** The cost to build a single ship. */
@@ -30,7 +31,8 @@ namespace Halite3.Core
         /** An inspired ship instead spends 1/X% halite to move. */
         public static int INSPIRED_MOVE_COST_RATIO { get; private set; }
 
-        public static void populateConstants(string stringFromEngine) {
+        public static void populateConstants(string stringFromEngine)
+        {
             dynamic tokens = JsonConvert.DeserializeObject(stringFromEngine);
 
             var constantsMap = new Dictionary<string, string>();

@@ -1,13 +1,16 @@
 namespace Halite3.Core
 {
-    public class PlayerId {
+    public class PlayerId
+    {
         public int Id { get; private set; }
 
-        public PlayerId(int id) {
+        public PlayerId(int id)
+        {
             Id = id;
         }
 
-        public override bool Equals(object other) {
+        public override bool Equals(object other)
+        {
             if (this == other) return true;
             if (!(other is PlayerId)) return false;
 
@@ -16,7 +19,8 @@ namespace Halite3.Core
             return Id == playerId.Id;
         }
 
-        public override int GetHashCode() {
+        public override int GetHashCode()
+        {
             return Id;
         }
     }

@@ -1,25 +1,31 @@
 namespace Halite3.Core
 {
-    public class Command {
+    public class Command
+    {
         public string CommandValue { get; private set; }
 
-        public static Command spawnShip() {
+        public static Command spawnShip()
+        {
             return new Command("g");
         }
 
-        public static Command transformShipIntoDropoffSite(EntityId id) {
+        public static Command transformShipIntoDropoffSite(EntityId id)
+        {
             return new Command("c " + id.Id);
         }
 
-        public static Command move(EntityId id, Direction direction) {
+        public static Command move(EntityId id, Direction direction)
+        {
             return new Command("m " + id.Id + ' ' + (char)direction);
         }
 
-        private Command(string command) {
+        private Command(string command)
+        {
             this.CommandValue = command;
         }
 
-        public override bool Equals(object other) {
+        public override bool Equals(object other)
+        {
             if (this == other) return true;
             if (!(other is Command)) return false;
 
@@ -28,7 +34,8 @@ namespace Halite3.Core
             return CommandValue.Equals(otherCommand.CommandValue);
         }
 
-        public override int GetHashCode() {
+        public override int GetHashCode()
+        {
             return CommandValue.GetHashCode();
         }
     }

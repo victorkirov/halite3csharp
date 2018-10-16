@@ -2,20 +2,24 @@ using System;
 
 namespace Halite3.Core
 {
-    public class Position {
+    public class Position
+    {
         public int X { get; private set; }
         public int Y { get; private set; }
 
-        public Position(int x, int y) {
+        public Position(int x, int y)
+        {
             this.X = x;
             this.Y = y;
         }
 
-        public Position DirectionalOffset(Direction d) {
+        public Position DirectionalOffset(Direction d)
+        {
             int dx;
             int dy;
 
-            switch (d) {
+            switch (d)
+            {
                 case Direction.NORTH:
                     dx = 0;
                     dy = -1;
@@ -43,7 +47,8 @@ namespace Halite3.Core
             return new Position(X + dx, Y + dy);
         }
 
-        public override bool Equals(object other) {
+        public override bool Equals(object other)
+        {
             if (this == other) return true;
             if (!(other is Position)) return false;
 
@@ -53,7 +58,8 @@ namespace Halite3.Core
             return Y == position.Y;
         }
 
-        public override int GetHashCode() {
+        public override int GetHashCode()
+        {
             int result = X;
             result = 31 * result + Y;
             return result;

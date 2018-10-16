@@ -23,20 +23,25 @@ namespace Halite3
 
             Log.logger().Info("Successfully created bot! My Player ID is " + game.MyId + ".");
 
-            var allDirections = new List<Direction>{Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST};
+            var allDirections = new List<Direction> { Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST };
 
-            while(true) {
+            while (true)
+            {
                 game.UpdateFrame();
                 var me = game.Me;
                 GameMap gameMap = game.GameMap;
 
                 var commandQueue = new List<Command>();
 
-                foreach (var ship in me.Ships.Values) {
-                    if (gameMap.At(ship).Halite < Constants.MAX_HALITE / 10 || ship.IsFull()) {
+                foreach (var ship in me.Ships.Values)
+                {
+                    if (gameMap.At(ship).Halite < Constants.MAX_HALITE / 10 || ship.IsFull())
+                    {
                         var randomDirection = allDirections[rng.Next(4)];
                         commandQueue.Add(ship.Move(randomDirection));
-                    } else {
+                    }
+                    else
+                    {
                         commandQueue.Add(ship.StayStill());
                     }
                 }

@@ -1,11 +1,14 @@
 namespace Halite3.Core
 {
-    public class Dropoff: Entity {
+    public class Dropoff : Entity
+    {
         public Dropoff(PlayerId owner, EntityId id, Position position) :
-            base(owner, id, position) {            
+            base(owner, id, position)
+        {
         }
 
-        internal static Dropoff _generate(PlayerId playerId) {
+        internal static Dropoff _generate(PlayerId playerId)
+        {
             Input input = Input.readInput();
 
             EntityId dropoffId = new EntityId(input.getInt());
