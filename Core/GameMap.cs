@@ -15,6 +15,8 @@ namespace Halite3.Core
             Cells = new MapCell[width, height];
         }
 
+        public MapCell this[int x, int y] => Cells[x.Mod(Width), y.Mod(Height)];
+
         public MapCell At(Position position) {
             Position normalized = normalize(position);
             return Cells[normalized.X, normalized.Y];
