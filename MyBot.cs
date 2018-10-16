@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Halite3.Core;
 using NLog;
 
@@ -11,11 +12,14 @@ namespace Halite3
         {
             Random rng = new Random(Guid.NewGuid().GetHashCode());
 
+            // Uncomment below to attach debugger
+            // while(!Debugger.IsAttached);
+
             Game game = new Game();
             // At this point "game" variable is populated with initial map data.
             // This is a good place to do computationally expensive start-up pre-processing.
             // As soon as you call "ready" function below, the 2 second per turn timer will start.
-            game.ready("MyBot");
+            game.ready("PopAye");
 
             Log.logger().Info("Successfully created bot! My Player ID is " + game.MyId + ".");
 
