@@ -7,10 +7,6 @@ namespace Halite3.Core
             Id = id;
         }
 
-        public string toString() {
-            return Id.ToString();
-        }
-
         public override bool Equals(object other) {
             if (this == other) return true;
             if (!(other is PlayerId)) return false;

@@ -11,7 +11,7 @@ namespace Halite3.Core
         STILL='o'
     }
 
-    public static class DirectionExtensions 
+    public static class DirectionExtensions
     {
         public static Direction InvertDirection(this Direction direction) {
             switch (direction) {

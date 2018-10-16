@@ -8,19 +8,19 @@ namespace Halite3.Core
             Halite = halite;
         }
 
-        public bool isFull() {
+        public bool IsFull() {
             return Halite >= Constants.MAX_HALITE;
         }
 
-        public Command makeDropoff() {
+        public Command MakeDropoff() {
             return Command.transformShipIntoDropoffSite(Id);
         }
 
-        public Command move(Direction direction) {
+        public Command Move(Direction direction) {
             return Command.move(Id, direction);
         }
 
-        public Command stayStill() {
+        public Command StayStill() {
             return Command.move(Id, Direction.STILL);
         }
 

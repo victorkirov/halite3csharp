@@ -1,18 +1,18 @@
 namespace Halite3.Core
 {
     public class Command {
-        public string CommandValue {get; private set;}
+        public string CommandValue { get; private set; }
 
         public static Command spawnShip() {
             return new Command("g");
         }
 
         public static Command transformShipIntoDropoffSite(EntityId id) {
-            return new Command("c " + id);
+            return new Command("c " + id.Id);
         }
 
         public static Command move(EntityId id, Direction direction) {
-            return new Command("m " + id + ' ' + direction);
+            return new Command("m " + id.Id + ' ' + (char)direction);
         }
 
         private Command(string command) {

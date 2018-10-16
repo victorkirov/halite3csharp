@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Halite3.Core
 {
@@ -30,65 +31,22 @@ namespace Halite3.Core
         public static int INSPIRED_MOVE_COST_RATIO { get; private set; }
 
         public static void populateConstants(string stringFromEngine) {
-            var rawTokens = stringFromEngine.Split("[{}, :\"]+");
-            var tokens = new List<string>();
-            for (int i = 0; i < rawTokens.Length; ++i) {
-                if (string.IsNullOrEmpty(rawTokens[i])) continue;
-
-                tokens.Add(rawTokens[i]);
-            }
-
-            if ((tokens.Count % 2) != 0) {
-                Log.logger().Error("Error: constants: expected even total number of key and value tokens from server.");
-                throw new ArgumentException();
-            }
+            dynamic tokens = JsonConvert.DeserializeObject(stringFromEngine);
 
             var constantsMap = new Dictionary<string, string>();
 
-            for (int i = 0; i < tokens.Count; i += 2) {
-                constantsMap.Add(tokens[i], tokens[i+1]);
-            }
-
-            SHIP_COST = GetInt(constantsMap, "NEW_ENTITY_ENERGY_COST");
-            DROPOFF_COST = GetInt(constantsMap, "DROPOFF_COST");
-            MAX_HALITE = GetInt(constantsMap, "MAX_ENERGY");
-            MAX_TURNS = GetInt(constantsMap, "MAX_TURNS");
-            EXTRACT_RATIO = GetInt(constantsMap, "EXTRACT_RATIO");
-            MOVE_COST_RATIO = GetInt(constantsMap, "MOVE_COST_RATIO");
-            INSPIRATION_ENABLED = GetBoolean(constantsMap, "INSPIRATION_ENABLED");
-            INSPIRATION_RADIUS = GetInt(constantsMap, "INSPIRATION_RADIUS");
-            INSPIRATION_SHIP_COUNT = GetInt(constantsMap, "INSPIRATION_SHIP_COUNT");
-            INSPIRED_EXTRACT_RATIO = GetInt(constantsMap, "INSPIRED_EXTRACT_RATIO");
-            INSPIRED_BONUS_MULTIPLIER = GetDouble(constantsMap, "INSPIRED_BONUS_MULTIPLIER");
-            INSPIRED_MOVE_COST_RATIO = GetInt(constantsMap, "INSPIRED_MOVE_COST_RATIO");
-        }
-
-        private static int GetInt(Dictionary<string, string> map, string key) {
-            return int.Parse(GetString(map, key));
-        }
-
-        private static double GetDouble(Dictionary<string, string> map, string key) {
-            return double.Parse(GetString(map, key));
-        }
-
-        private static bool GetBoolean(Dictionary<string, string> map, string key) {
-            string stringValue = GetString(map, key);
-            switch (stringValue) {
-                case "true": return true;
-                case "false": return false;
-                default:
-                    Log.logger().Error("Error: constants: " + key + " constant has value of '" + stringValue +
-                        "' from server. Do not know how to parse that as boolean.");
-                    throw new ArgumentException();
-            }
-        }
-
-        private static string GetString(Dictionary<string, string> map, string key) {
-            if (!map.ContainsKey(key)) {
-                Log.logger().Error("Error: constants: server did not send " + key + " constant.");
-                throw new ArgumentException();
-            }
-            return map[key];
+            SHIP_COST = tokens.NEW_ENTITY_ENERGY_COST;
+            DROPOFF_COST = tokens.DROPOFF_COST;
+            MAX_HALITE = tokens.MAX_ENERGY;
+            MAX_TURNS = tokens.MAX_TURNS;
+            EXTRACT_RATIO = tokens.EXTRACT_RATIO;
+            MOVE_COST_RATIO = tokens.MOVE_COST_RATIO;
+            INSPIRATION_ENABLED = tokens.INSPIRATION_ENABLED;
+            INSPIRATION_RADIUS = tokens.INSPIRATION_RADIUS;
+            INSPIRATION_SHIP_COUNT = tokens.INSPIRATION_SHIP_COUNT;
+            INSPIRED_EXTRACT_RATIO = tokens.INSPIRED_EXTRACT_RATIO;
+            INSPIRED_BONUS_MULTIPLIER = tokens.INSPIRED_BONUS_MULTIPLIER;
+            INSPIRED_MOVE_COST_RATIO = tokens.INSPIRED_MOVE_COST_RATIO;
         }
     }
 }

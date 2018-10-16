@@ -14,7 +14,7 @@ namespace Halite3.Core
 
                 var fileTarget = new FileTarget("target2")
                 {
-                    FileName = "${basedir}/../../../log.log",
+                    FileName = "${basedir}/log.log",
                     Layout = "${longdate} ${level} ${message}  ${exception}"
                 };
                 config.AddTarget(fileTarget);
@@ -23,7 +23,7 @@ namespace Halite3.Core
 
                 LogManager.Configuration = config;
 
-                Log.loggerInstance = LogManager.GetLogger("MyBot");        
+                Log.loggerInstance = LogManager.GetLogger("MyBot");
             }
             return Log.loggerInstance;
         }
